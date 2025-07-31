@@ -3,15 +3,12 @@ import "./App.css";
 import { createClient } from "@supabase/supabase-js";
 
 /**
- * THEME COLORS
- * Accent: #ffeb3b (yellow)
- * Primary: #3f51b5 (blue)
- * Secondary: #f50057 (pink)
+ * THEME COLORS -- Monochrome only
  */
 const COLORS = {
-  accent: "#ffeb3b",
-  primary: "#3f51b5",
-  secondary: "#f50057",
+  accent: "#fff",
+  primary: "#111",
+  secondary: "#444",
 };
 
 // Supabase setup from environment variables
@@ -202,25 +199,25 @@ function App() {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
-  // Style helpers for theme colors
+  // Style helpers for theme colors (Monochrome variables)
   const themeVars = {
-    "--primary-color": COLORS.primary,
-    "--secondary-color": COLORS.secondary,
-    "--accent-color": COLORS.accent,
-    "--sidebar-bg": "#f8f9fa",
-    "--sidebar-border": "#e9ecef",
-    "--sidebar-active-bg": "#e3f2fd",
+    "--primary-color": "#111",
+    "--secondary-color": "#444",
+    "--accent-color": "#fff",
+    "--sidebar-bg": "#fff",
+    "--sidebar-border": "#111",
+    "--sidebar-active-bg": "#ededed",
     "--note-hover-bg": "#f5f5f5",
     "--main-bg": "#fff",
-    "--main-border": "#e1e1e1",
-    "--error": COLORS.secondary,
-    "--button-bg": COLORS.primary,
-    "--button-accent-bg": COLORS.accent,
+    "--main-border": "#111",
+    "--error": "#111",
+    "--button-bg": "#111",
+    "--button-accent-bg": "#fff",
     "--button-text": "#fff",
-    "--input-bg": "#fcfcfc",
-    "--input-border": "#e0e0e0",
+    "--input-bg": "#fff",
+    "--input-border": "#111",
     "--search-bg": "#f5f5f5",
-    "--search-border": "#e0e0e0",
+    "--search-border": "#111",
   };
 
   // Main render
@@ -262,10 +259,6 @@ function App() {
               className="primary-btn"
               onClick={handleCreateNote}
               tabIndex={0}
-              style={{
-                background: "var(--button-accent-bg)",
-                color: COLORS.primary,
-              }}
             >
               + New Note
             </button>
@@ -276,8 +269,6 @@ function App() {
               value={searchText}
               onChange={handleSearchChange}
               style={{
-                background: "var(--search-bg)",
-                border: "1px solid var(--search-border)",
                 marginTop: "10px",
               }}
             />
@@ -337,11 +328,6 @@ function App() {
                       maxLength={128}
                       value={activeNote.title}
                       onChange={handleChange}
-                      style={{
-                        background: "var(--input-bg)",
-                        border: "1px solid var(--input-border)",
-                        color: "var(--primary-color)",
-                      }}
                       required
                     />
                     <textarea
@@ -352,12 +338,9 @@ function App() {
                       onChange={handleChange}
                       rows={12}
                       style={{
-                        background: "var(--input-bg)",
-                        border: "1px solid var(--input-border)",
                         marginTop: "10px",
                         minHeight: "168px",
                         resize: "vertical",
-                        color: "#353535",
                       }}
                       required
                     />
@@ -365,7 +348,6 @@ function App() {
                       <button
                         className="primary-btn"
                         type="submit"
-                        style={{ background: "var(--button-bg)" }}
                       >
                         💾 Save
                       </button>
@@ -373,10 +355,6 @@ function App() {
                         className="secondary-btn"
                         type="button"
                         onClick={handleCancelEdit}
-                        style={{
-                          background: "#cccccc",
-                          color: "#333",
-                        }}
                       >
                         Cancel
                       </button>
@@ -393,7 +371,6 @@ function App() {
                         className="primary-btn"
                         type="button"
                         onClick={handleEditNote}
-                        style={{ background: "var(--button-bg)" }}
                       >
                         ✏️ Edit
                       </button>
@@ -401,7 +378,6 @@ function App() {
                         className="danger-btn"
                         type="button"
                         onClick={handleDeleteNote}
-                        style={{ background: "var(--error)" }}
                       >
                         🗑️ Delete
                       </button>
@@ -416,9 +392,6 @@ function App() {
                   <button
                     onClick={handleCreateNote}
                     className="link-like"
-                    style={{
-                      color: "var(--button-accent-bg)",
-                    }}
                   >
                     create a new note
                   </button>
