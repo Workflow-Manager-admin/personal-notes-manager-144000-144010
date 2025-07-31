@@ -27,7 +27,8 @@ function App() {
   // State management
   const [notes, setNotes] = useState([]);
   const [activeNoteId, setActiveNoteId] = useState(null);
-  const [activeNote, setActiveNote] = useState({ title: "", content: "" });
+  // Change all "content" state to "body"
+  const [activeNote, setActiveNote] = useState({ title: "", body: "" });
   const [isEditing, setIsEditing] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [filteredNotes, setFilteredNotes] = useState([]);
@@ -57,7 +58,12 @@ function App() {
   useEffect(() => {
     if (activeNoteId) {
       const note = notes.find((n) => n.id === activeNoteId);
-      if (note) setActiveNote({ title: note.title, content: note.content });
+      if (note) {
+        setActiveNote({
+          title: note.title,
+          content: (note.content !== undefined ? note.content : (note.body ?? "")),
+        });
+      }
       setIsEditing(false);
     } else {
       setActiveNote({ title: "", content: "" });
@@ -74,7 +80,13 @@ function App() {
       .select("*")
       .order("updated_at", { ascending: false });
     if (error) setErrorMessage("Failed to fetch notes.");
-    else setNotes(data || []);
+    else {
+      // Map "body" from backend to "content" for frontend compatibility
+      setNotes((data || []).map(n => ({
+        ...n,
+        content: n.body ?? "", // For display in UI
+      })));
+    }
     setLoading(false);
   }
 
@@ -82,15 +94,18 @@ function App() {
   async function handleCreateNote() {
     setErrorMessage("");
     const title = "Untitled Note";
+    // Create note with "body" field for Supabase
     const { data, error } = await supabase
       .from(NOTES_TABLE)
-      .insert({ title, content: "" })
+      .insert({ title, body: "" })
       .select()
       .single();
     if (error) setErrorMessage("Could not create note.");
     else {
-      setNotes([data, ...notes]);
-      setActiveNoteId(data.id);
+      // Map "body" to "content" for frontend state
+      const uiNote = { ...data, content: data.body ?? "" };
+      setNotes([uiNote, ...notes]);
+      setActiveNoteId(uiNote.id);
       setIsEditing(true);
     }
   }
@@ -103,19 +118,22 @@ function App() {
       setErrorMessage("Title cannot be empty.");
       return;
     }
+    // Update "body" instead of "content"
     const { data, error } = await supabase
       .from(NOTES_TABLE)
       .update({
         title: activeNote.title,
-        content: activeNote.content,
+        body: activeNote.content,
       })
       .eq("id", activeNoteId)
       .select()
       .single();
     if (error) setErrorMessage("Failed to save note.");
     else {
+      // Map "body" to "content" for frontend state
+      const uiNote = { ...data, content: data.body ?? "" };
       setNotes((prev) =>
-        prev.map((note) => (note.id === data.id ? data : note))
+        prev.map((note) => (note.id === uiNote.id ? uiNote : note))
       );
       setIsEditing(false);
     }
