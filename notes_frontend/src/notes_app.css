@@ -1,21 +1,21 @@
 :root {
-  --primary-color: #111;         /* Black */
-  --secondary-color: #444;       /* Slightly lighter black for contrast (dark gray) */
-  --accent-color: #fff;          /* White as only accent */
-  --sidebar-bg: #fff;
-  --sidebar-border: #111;
-  --sidebar-active-bg: #ededed;  /* Very light gray for active, keeps monochrome */
-  --note-hover-bg: #f5f5f5;      /* Light gray for hover */
+  --primary-color: #3f51b5;
+  --secondary-color: #f50057;
+  --accent-color: #ffeb3b;
+  --sidebar-bg: #f8f9fa;
+  --sidebar-border: #e9ecef;
+  --sidebar-active-bg: #e3f2fd;
+  --note-hover-bg: #f5f5f5;
   --main-bg: #fff;
-  --main-border: #111;
-  --error: #111;
-  --button-bg: #111;
-  --button-accent-bg: #fff;
+  --main-border: #e1e1e1;
+  --error: #f50057;
+  --button-bg: #3f51b5;
+  --button-accent-bg: #ffeb3b;
   --button-text: #fff;
-  --input-bg: #fff;
-  --input-border: #111;
+  --input-bg: #fcfcfc;
+  --input-border: #e0e0e0;
   --search-bg: #f5f5f5;
-  --search-border: #111;
+  --search-border: #e0e0e0;
 }
 
 /* Layout container */
@@ -89,16 +89,15 @@
   margin-right: 8px;
 }
 .primary-btn:active {
-  background: #222;
+  background: #303989;
 }
 .secondary-btn {
-  background: #ededed;
-  color: #111;
+  background: #cccccc;
+  color: #333;
 }
 .danger-btn {
-  background: #111;
+  background: var(--error);
   color: #fff;
-  border: 1px solid #111;
 }
 .search-input {
   padding: 8px 14px;
@@ -108,7 +107,6 @@
   border-radius: 6px;
   outline: none;
   margin-bottom: 10px;
-  color: #111;
 }
 .notes-list {
   list-style: none;
@@ -126,8 +124,6 @@
   transition: background 0.15s;
   border: 0px solid transparent;
   outline: none;
-  color: #111;
-  background: transparent;
 }
 .notes-list-item:focus,
 .notes-list-item:hover {
@@ -147,10 +143,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .note-snippet {
   font-size: 0.935rem;
-  color: #444;
+  color: #4c4c4cb7;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -199,7 +194,7 @@
   background: var(--input-bg);
   border-radius: 6px;
   padding: 1em 0.6em;
-  color: #111;
+  color: #353535;
   font-family: inherit;
   line-height: 1.56;
   margin-bottom: 14px;
@@ -215,7 +210,7 @@
   padding: 0.6em 0;
   background: none;
   font-size: 1.11rem;
-  color: #222;
+  color: #242424;
   white-space: pre-wrap;
   min-height: 140px;
   margin-bottom: 12px;
@@ -231,7 +226,7 @@
 }
 .no-selection {
   text-align: center;
-  color: #959595;
+  color: #888;
   margin-top: 50px;
   font-size: 1.15rem;
 }
@@ -239,7 +234,7 @@
   border: none;
   background: none;
   cursor: pointer;
-  color: #111;
+  color: var(--accent-color);
   text-decoration: underline;
   font-size: 1rem;
   font-weight: 700;
@@ -265,7 +260,7 @@
 }
 .theme-toggle-btn {
   background: var(--main-bg);
-  border: 1px solid #111;
+  border: 1px solid #ededee;
   border-radius: 11px;
   font-size: 1.02rem;
   padding: 5px 19px;
@@ -281,9 +276,9 @@
 /* Error message */
 .error-message {
   margin-top: 12px;
-  background: #fff;
-  color: #111;
-  border: 1px solid #111;
+  background: #fff1f6;
+  color: var(--error);
+  border: 1px solid #ffcdd2;
   border-radius: 8px;
   padding: 10px 22px;
   font-size: 1.08rem;
@@ -308,7 +303,7 @@
   }
   .sidebar.open {
     left: 0;
-    box-shadow: 3px 0 16px #ededed;
+    box-shadow: 3px 0 16px rgba(63,81,181,0.10);
   }
   .sidebar-toggle {
     display: block;
