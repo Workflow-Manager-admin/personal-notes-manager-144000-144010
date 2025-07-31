@@ -1,26 +1,24 @@
-/* CSS Variables for Theme Management */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --bg-primary: #fff;
+  --bg-secondary: #ededed;
+  --text-primary: #111;
+  --text-secondary: #444;
+  --border-color: #111;
+  --button-bg: #111;
+  --button-text: #fff;
 }
 
 [data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+  --bg-primary: #111;
+  --bg-secondary: #222;
+  --text-primary: #fff;
+  --text-secondary: #ededed;
+  --border-color: #fff;
+  --button-bg: #fff;
+  --button-text: #111;
 }
 
+/* Main App wrapper */
 .App {
   text-align: center;
   background-color: var(--bg-primary);
@@ -54,15 +52,16 @@
 }
 
 .App-link {
-  color: var(--text-secondary);
+  color: var(--text-primary);
   transition: color 0.3s ease;
 }
 
+/* THEME SWITCHER BUTTON */
 .theme-toggle {
   position: absolute;
   top: 20px;
   right: 20px;
-  background-color: var(--button-bg);
+  background: var(--button-bg);
   color: var(--button-text);
   border: none;
   border-radius: 8px;
@@ -70,16 +69,14 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  box-shadow: none;
 }
-
 .theme-toggle:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   opacity: 0.9;
+  box-shadow: none;
 }
-
 .theme-toggle:active {
   transform: translateY(0);
 }
@@ -93,7 +90,6 @@
   }
 }
 
-/* Responsive design for mobile */
 @media (max-width: 768px) {
   .theme-toggle {
     top: 10px;
